@@ -4,47 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine?</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap');
+
+        body {
+            background-color: #FFC0CB;
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-family: 'Baloo 2', cursive;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .heart {
+            display: inline-block;
+            font-size: 2.5rem;
+            color: red;
+            animation: heartbeat 1s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        p {
+            font-size: 2rem;
+            color: black;
+            max-width: 80%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .buttons button {
+            font-size: 2rem;
+            margin: 15px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .yes { background-color: #77dd77; }
+        .no { background-color: #ff6961; }
+    </style>
 </head>
 <body>
-    <!-- Background Music (Spotify Embed) -->
-    <iframe style="display:none;" src="https://open.spotify.com/embed/track/YOUR_SPOTIFY_TRACK_ID" width="0" height="0"></iframe>
-
-    <!-- Main Heading -->
-    <h1 class="heading">💖 Will You Be My Valentine? 💖</h1>
-
-    <!-- Floating Images in Heart Shape -->
-    <div class="heart-container">
-        <img src="images/image1.jpg" class="floating-heart">
-        <img src="images/image2.jpg" class="floating-heart">
-        <img src="images/image3.jpg" class="floating-heart">
-    </div>
-
-    <!-- Love Message (Your Original Text) -->
-    <p class="love-message">
-        My dear love, you’ve given me so much happiness throughout the last year and  
-        I will forever be in love with you for all that you are!!  
-        <br><br>
-        Thank you Maleesha, mage loke eliya krnawata,  
-        mona prashne awath wisandanawata,  
-        mta kisima aduwak nathuwa adare krnawata,  
-        me hamadetama thank you!  
-        I love you my baby more than words can ever describe! 💖
-    </p>
-
-    <!-- Animated Floating Hearts -->
-    <div class="animated-hearts"></div>
-
-    <!-- Yes/No Buttons -->
+    <h1>
+        <span class="heart">❤</span>
+        Will You Be My Valentine?
+        <span class="heart">❤</span>
+    </h1>
+    
+    <p>My dear love, you've given me so much happiness throughout the last year and I will forever be in love with you for all that you are!! Thank you Maleesha mage loke eliya krnawata, mona prashne awath wisandanawata, mta kisima aduwak nathuwa adare krnawata, me hamadetama thank you! I love you my baby more than words can ever describe!</p>
+    
+    <h2>So... will you be my valentine?</h2>
+    
     <div class="buttons">
-        <a href="yes.html" class="btn yes">Yes 💘</a>
-        <a href="no.html" class="btn no">No 💔</a>
+        <button class="yes" onclick="chooseYes()">Yes</button>
+        <button class="no" onclick="chooseNo()">No</button>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function sendEmail(choice) {
+            fetch(`https://formspree.io/f/mwkgaylz`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: "shereencrystald@gmail.com", message: `Maleesha picked ${choice}` })
+            });
+        }
+        
+        function chooseYes() {
+            sendEmail("yes");
+            window.location.href = "yes.html";
+        }
+        
+        function chooseNo() {
+            sendEmail("no");
+            window.location.href = "no.html";
+        }
+    </script>
 </body>
 </html>
-
-
-
 
